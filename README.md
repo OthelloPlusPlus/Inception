@@ -64,6 +64,22 @@ A Dockerfile is a text document that contains instructions for building a Docker
 # Docker Compose
 Docker Compose is a tool for defining and running multi-container Docker applications. It uses a YAML file to define the services, networks, and volumes required for an application and allows you to start, stop, and manage the entire application stack with a single command. Docker Compose simplifies the orchestration of complex applications by providing a declarative syntax for defining the application configuration and automating common tasks like container linking and network setup.
 
+```
+services:
+  web:
+    image: nginx:latest  # Specifies the Docker image to use for the service.
+    container_name: web_container  # Sets the name of the container.
+    ports:  # Exposes ports from the container to the host system.
+      - "8080:80"  # Maps port 80 inside the container to port 8080 on the host.
+    volumes:  # Specifies volumes to mount into the container.
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Mounts the local nginx.conf file into the container.
+    networks:  # Defines which networks the service should be connected to.
+      - frontend  # Connects to the frontend network.
+      - backend   # Connects to the backend network.
+    depends_on:  # Specifies dependencies between services.
+      - db  # Indicates that the web service depends on the db service.
+```
+
 <table>
 	<thead style="background-color: #C0C0C0;">
 		<tr><th colspan="3">Docker Compose Structure</th></tr>
