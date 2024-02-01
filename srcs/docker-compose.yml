@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  # base_image:
+  #   container_name: base
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - wordpress
+      - mariadb
+    env_file:
+      - .env
+    volumes:
+      - wordpress-db:/var/www/html
+    networks:
+      - netception
+    restart: unless-stopped
+    stop_signal:
+      SIGTERM
+
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    volumes:
+      - wordpress-db:/var/www/html
+    networks:
+      - netception
+    restart: unless-stopped
+    stop_signal:
+      SIGTERM
+
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - mariadb-db:/var/lib/mysql
+    networks:
+      - netception
+    restart: unless-stopped
+    stop_signal:
+      SIGTERM
+
+volumes:
+  wordpress-db:
+    name: wordpress-db
+    driver: local
+  mariadb-db:
+    name: mariadb-db
+    driver: local
+
+networks:
+  netception:
+    name: netception
+    driver: bridge
