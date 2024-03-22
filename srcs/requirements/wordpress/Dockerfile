@@ -4,8 +4,10 @@ ENV	DEBIAN_FRONTEND noninteractive
 
 # Installation
 RUN		apt-get install -y --fix-missing \
-			mariadb-server \
-			gettext-base \
+			wget \
+			php7.4-fpm \
+			php7.4-mysqli \
+			mariadb-client \
 	&&	apt-get clean \
 	&&	rm -rf /var/lib/apt/lists/* \
 	&&	mkdir /run/php

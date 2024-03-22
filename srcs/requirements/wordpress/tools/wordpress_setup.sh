@@ -124,10 +124,4 @@ fi
 msg	"Displaying users:"
 wp-cli user list --allow-root --orderby=roles --order=desc --number=9 --format=table
 
-if pgrep -x "php-fpm7.4" > /dev/null; then
-	echo "php is running";
-else
-	echo "php is not running";
-fi
-
 exec	"$@" && echo "Completed [$@]" || echo "Failed [$@]"
