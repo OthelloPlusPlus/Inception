@@ -1,42 +1,38 @@
+DOCK_COMPOSE_CMD :=	docker-compose
+DOCK_COMPOSE_FILE :=	srcs/docker-compose.yml
 
-COMPOSE_FILE :=	srcs/docker-compose.yml
+all: build updetach
 
-# IMAGES += mariadb
-# IMAGES += nginx
-# IMAGES += wordpress
+build up down kill:
+	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) $@
 
-all: up
-
-compose:
-	docker-compose -f $(COMPOSE_FILE) build
-
-up: compose
-	docker-compose -f $(COMPOSE_FILE) up
+buildclean:
+	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) build --no-cache
+	
+updetach:
+	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) up -d
 
 show:
 	@echo "\n Images:"
-	@docker images -a
+	@docker images
 	@echo "\n Containers: "
-	@docker ps -a
+	@docker ps
 	@echo "\n Volumes: "
 	@docker volume ls
 	@echo "\n Networks: "
-	@docker network ls
+	@docker network ls --filter type=custom
 
-down:
-	docker-compose -f $(COMPOSE_FILE) down
+run: down build updetach
 
-kill:
-	docker-compose -f $(COMPOSE_FILE) kill
+re: down buildclean updetach
 
-re: down
-	docker-compose -f $(COMPOSE_FILE) build --no-cache
-	docker-compose -f $(COMPOSE_FILE) up -d
+rmi:
+	docker rmi $(shell docker images -aq)
 
 clean:
-	docker-compose -f $(COMPOSE_FILE) down --rmi all
+	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) down --rmi local --remove-orphans
 
-fclean: kill
-	docker-compose -f $(COMPOSE_FILE) down --rmi all -v --remove-orphans
+fclean:
+	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) down --rmi all -v --remove-orphans
 
-.PHONY: all compse up show down kill re clean fclean
+.PHONY: all build up down kill updateach buildclean show run re clean fclean

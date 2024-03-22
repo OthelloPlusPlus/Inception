@@ -1,20 +1,30 @@
-# Pulling Debian
-# 	Versions	https://www.debian.org/releases/
-#		12.4	Bookworm (Stable)
-#		11.8	Bullseye (Penultimate)
-#		10.13	Buster	(oldoldstable)
-FROM	debian:bullseye
+FROM inception:base
 
-LABEL	_author="Othello"\
-		_project="Inception"
+ENV	DEBIAN_FRONTEND noninteractive
 
-RUN		apt-get update
+# Installation
 RUN		apt-get install -y --fix-missing \
-						php-fpm
-RUN		apt-get clean \
-	&&	rm -rf /var/lib/apt/lists/*
+			mariadb-server \
+			gettext-base \
+	&&	apt-get clean \
+	&&	rm -rf /var/lib/apt/lists/* \
+	&&	mkdir /run/php
 
+# Import
+COPY	conf/www.conf				/etc/php/7.4/fpm/pool.d/www.conf
+
+COPY	tools/wordpress_setup.sh	/usr/local/bin/wordpress_setup.sh
+COPY	/tools/health_daemon.sh	/usr/local/bin/health_daemon.sh
+RUN		chmod +x	/usr/local/bin/wordpress_setup.sh \
+					/usr/local/bin/health_daemon.sh
+
+# Configuration
+WORKDIR /var/www/html
 EXPOSE	9000
+HEALTHCHECK	--interval=1m --timeout=10s --retries=3 \
+			CMD ["/usr/local/bin/health_daemon.sh"]
 
-# CMD	["nginx", "-g", "daemon off;"]
-CMD ["tail", "-f", "/dev/null"]
+# Bootup
+ENTRYPOINT	["/usr/local/bin/wordpress_setup.sh"]
+CMD	["php-fpm7.4", "-F"]
+# CMD ["tail", "-f", "/dev/null"]

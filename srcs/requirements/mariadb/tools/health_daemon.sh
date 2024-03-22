@@ -1,4 +1,9 @@
-mariadb	-h localhost --protocol tcp -e 'select 1' 2>&1 | \
-	grep -qf "Can't connect" 2> /dev/null;
+#! /bin/bash
 
-exit $(( ! $? ))
+which mariadb &> /dev/null | exit $?;
+
+mariadb -u$DB_USER -p$DB_PASSWORD -e "USE $DB_NAME;" &> /dev/null || exit $?;
+
+mariadb -u$DB_ROOT_USER -p$DB_ROOT_PWD -e "USE $DB_NAME;" &> /dev/null || exit $?;
+
+exit 0;

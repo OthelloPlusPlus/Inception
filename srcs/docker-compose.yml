@@ -1,68 +1,78 @@
 version: '3.8'
 
 services:
-  # base_image:
-  #   container_name: base
+  inception_base:
+    container_name: inception
+    image: inception:base
+    build:
+      context: ./requirements/inception_base
+      dockerfile: Dockerfile
+    restart: "no"
 
   nginx:
     container_name: nginx
+    image: nginx:inception
+    depends_on:
+      - inception_base
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
-    depends_on:
-      - wordpress
-      - mariadb
-    env_file:
-      - .env
-    volumes:
-      - wordpress-db:/var/www/html
+    restart: "unless-stopped"
+    stop_signal: SIGTERM
+    ports:
+      - 443:443
     networks:
       - netception
-    restart: unless-stopped
-    stop_signal:
-      SIGTERM
-
+    volumes:
+      - WP_Website:/var/www/html
+  
   wordpress:
     container_name: wordpress
+    image: wordpress:inception
+    depends_on:
+      - inception_base
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
-    depends_on:
-      - mariadb
+    restart: "unless-stopped"
+    stop_signal: SIGTERM
     env_file:
       - .env
-    volumes:
-      - wordpress-db:/var/www/html
+    ports:
+      - 9000:9000
     networks:
       - netception
-    restart: unless-stopped
-    stop_signal:
-      SIGTERM
+    volumes:
+      - WP_Website:/var/www/html
 
   mariadb:
     container_name: mariadb
+    image: mariadb:inception
+    depends_on:
+      - inception_base
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    restart: "unless-stopped"
+    stop_signal: SIGTERM
     env_file:
       - .env
-    volumes:
-      - mariadb-db:/var/lib/mysql
+    ports:
+      - 3306-3306
     networks:
       - netception
-    restart: unless-stopped
-    stop_signal:
-      SIGTERM
-
-volumes:
-  wordpress-db:
-    name: wordpress-db
-    driver: local
-  mariadb-db:
-    name: mariadb-db
-    driver: local
+    volumes:
+      - WP_Database:/var/lib/mysql
 
 networks:
   netception:
     name: netception
     driver: bridge
+
+volumes:
+  WP_Website:
+    name: WP_Website
+    driver: local
+  WP_Database:
+    name: WP_Database
+    driver: local
