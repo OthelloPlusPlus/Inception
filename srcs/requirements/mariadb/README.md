@@ -2,10 +2,12 @@
 MariaDB is an open-source relational database management system (RDBMS) that originated as a fork of MySQL. It was created by the original developers of MySQL after concerns arose over the acquisition of MySQL by Oracle Corporation. MariaDB shares a similar architecture and design with MySQL but offers additional features, performance improvements, and a commitment to open-source principles. It is known for its compatibility with MySQL, making it a drop-in replacement for many MySQL applications. MariaDB is widely used for building and managing databases in various applications and industries.
 
 # Table of Contents
-- [Users](#users)
-- [Databases](#databases)
-- [Tables](#tables)
+- [Operational Command Overview](#operational-command-overview)
+	- [Users](#users)
+	- [Databases](#databases)
+	- [Tables](#tables)
 
+# Operational Command Overview
 ## Users
 ```mysql
 -- Show existing users
