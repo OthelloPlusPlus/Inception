@@ -2,10 +2,39 @@
 MariaDB is an open-source relational database management system (RDBMS) that originated as a fork of MySQL. It was created by the original developers of MySQL after concerns arose over the acquisition of MySQL by Oracle Corporation. MariaDB shares a similar architecture and design with MySQL but offers additional features, performance improvements, and a commitment to open-source principles. It is known for its compatibility with MySQL, making it a drop-in replacement for many MySQL applications. MariaDB is widely used for building and managing databases in various applications and industries.
 
 # Table of Contents
+- [Configuration](#configuration)
 - [Operational Command Overview](#operational-command-overview)
 	- [Users](#users)
 	- [Databases](#databases)
 	- [Tables](#tables)
+
+# Configuration
+MariaDB has several configuration files. Two of these have te be adjusted.
+<table>
+	<thead style="background-color: #C0C0C0;">
+		<tr>
+			<th>File</th>
+			<th>Description</th>
+			<th>Configuration Adjustments</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td rowspan=2><a href="conf/mariadb.conf" target="_blank">mariadb.cnf</a></td>
+			<td rowspan=2>Global settings configuration file containing settings for the entire MariaDB instance.</td>
+			<td>Set to connect to <a href="conf/mariadb.conf#L24" target="_blank">port 3306</a>.</td>
+		</tr>
+		<tr><td>Set to <a href="conf/mariadb.conf#L25" target="_blank">store socket information at /run/mysqld/mysqld.sock</a>.</td></tr>
+		<tr>
+			<td rowspan=4><a href="conf/50-server.conf" target="_blank">50-server.cnf</a></td>
+			<td rowspan=4>Server settings configuration file. The '50' indicates its priority/order in which it is loaded.</td>
+			<td>Set user to <a href="conf/50-server.conf#L15" target="_blank">root</a>.</td>
+		</tr>
+		<tr><td>Set server to listen to <a href="conf/50-server.conf#L23" target="_blank">port 3306</a>.</td></tr>
+		<tr><td>Set server to <a href="conf/50-server.conf#L24" target="_blank">read socket information at /run/mysqld/mysqld.sock</a>.</td></tr>
+		<tr><td>Set server to <a href="conf/50-server.conf#L33" target="_blank">listen on all addresses</a>.</td></tr>
+	</tbody>
+</table>
 
 # Operational Command Overview
 ## Users
