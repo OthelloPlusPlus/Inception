@@ -27,12 +27,12 @@ run: down build updetach
 re: down buildclean updetach
 
 rmi:
-	docker rmi $(shell docker images -aq)
+	docker rmi $(shell docker images -aq) | true
 
 clean:
 	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) down --rmi local --remove-orphans
 
-fclean:
+fclean: rmi
 	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) down --rmi all -v --remove-orphans
 
 .PHONY: all build up down kill updateach buildclean show run re clean fclean
