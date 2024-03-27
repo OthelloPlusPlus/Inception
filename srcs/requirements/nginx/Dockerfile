@@ -2,8 +2,6 @@ FROM inception:base
 
 # Installation
 RUN	apt-get install -y --fix-missing \
-			apt-utils \
-			iputils-ping \
 			nginx \
 			openssl \
 	&&	apt-get clean \
@@ -34,8 +32,8 @@ RUN		mkdir /etc/nginx/ssl \
 
 # Import
 #	Copy with symbolic link
-COPY	conf/wordpress.conf	/etc/nginx/sites-available/nginx.conf
-RUN		ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+COPY	conf/wordpress.conf	/etc/nginx/sites-available/wordpress.conf
+RUN		ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 
 COPY	/tools/health_daemon.sh	/usr/local/bin/health_daemon.sh
 RUN		chmod +x /usr/local/bin/health_daemon.sh
