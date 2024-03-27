@@ -8,16 +8,16 @@ RUN		apt-get install -y --fix-missing \
 	&&	rm -rf /var/lib/apt/lists/*
 
 # Import
-COPY	conf/50-server.conf		/etc/mysql/mariadb.conf.d/50-server.cnf
-
 COPY	conf/mariadb.conf		/etc/mysql/mariadb.cnf
 RUN		chmod 664	/etc/mysql/mariadb.cnf
 
 COPY	tools/mariadb_setup.sh	/usr/local/bin/mariadb_setup.sh
+COPY	tools/mariadb_init.sql		/usr/local/bin/mariadb_init.sql
+RUN		chmod +r	/usr/local/bin/mariadb_init.sql
+
 COPY	tools/health_daemon.sh	/usr/local/bin/health_daemon.sh
 RUN		chmod +x	/usr/local/bin/mariadb_setup.sh \
 					/usr/local/bin/health_daemon.sh
-
 
 # Configuration
 EXPOSE	3306

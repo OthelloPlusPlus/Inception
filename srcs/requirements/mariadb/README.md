@@ -21,7 +21,8 @@ MariaDB has several configuration files. Two of these have te be adjusted.
 	<tbody>
 		<tr>
 			<td rowspan=2><a href="conf/mariadb.conf" target="_blank">mariadb.cnf</a></td>
-			<td rowspan=2>Global settings configuration file containing settings for the entire MariaDB instance.</td>
+			<td rowspan=2>Global settings configuration file containing settings for the entire MariaDB instance.<br>
+			Accessed through the symbolic link from /etc/mysql/my.cnf</td>
 			<td>Set to connect to <a href="conf/mariadb.conf#L24" target="_blank">port 3306</a>.</td>
 		</tr>
 		<tr><td>Set to <a href="conf/mariadb.conf#L25" target="_blank">store socket information at /run/mysqld/mysqld.sock</a>.</td></tr>
