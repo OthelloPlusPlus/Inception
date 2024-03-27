@@ -36,11 +36,11 @@ The wordpress website has been enabled with a symbolic link to /etc/nginx/sites-
       <td rowspan=5>The main configuration file for NGINX.
         It contains global directives that apply to the entire NGINX server, including settings related to server behavior, performance tuning, logging, and other global parameters.
         It also includes directives for including additional configuration files.</td>
-      <td>Set NGINX to listen to <a href="nginx/conf/wordpress.conf#L3" target="_blank">port 443</a> for both IPv4 and IPv6.</td>
+      <td>Set NGINX to listen to <a href="nginx/conf/wordpress.conf#L28" target="_blank">port 443</a> for both IPv4 and IPv6.</td>
     </tr>
-    <tr><td>Set NGINX to use the <a href="nginx/conf/wordpress.conf#L8" target="_blank">TLSv1.2 and TLSv1.3 protocols</a>.</td></tr>
-    <tr><td>Specifies the <a href="nginx/conf/wordpress.conf#L9" target="_blank>locations of the private key and certificate</a>.</td></tr>
-    <tr><td>Specifies the websites <a href="nginx/conf/wordpress.conf#L12" target="_blank">basic information</a>.</td></tr>
-    <tr><td>Sets the <a href="nginx/conf/wordpress.conf#L12" target="_blank">FastCGI</a> (Fast Common Gateway Interface) protocol to the WordPress website over port 9000.</td></tr>
+    <tr><td>Set NGINX to use the <a href="nginx/conf/wordpress.conf#L39" target="_blank">TLSv1.2 and TLSv1.3 protocols</a>.</td></tr>
+    <tr><td>Specifies the <a href="nginx/conf/wordpress.conf#L40" target="_blank">locations of the private key and certificate</a>.</td></tr>
+    <tr><td>Specifies the websites <a href="nginx/conf/wordpress.conf#L49" target="_blank">basic information</a>.</td></tr>
+    <tr><td>Sets the <a href="nginx/conf/wordpress.conf#L70" target="_blank">FastCGI</a> (Fast Common Gateway Interface) protocol to the WordPress website over port 9000.</td></tr>
   </tbody>
 </table>
