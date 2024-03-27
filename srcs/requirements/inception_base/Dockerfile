@@ -9,4 +9,9 @@ LABEL	_author="Othello"\
 
 RUN		apt-get update \
 	&&	apt-get install -y \
-			apt-utils
+			apt-utils \
+			gettext-base
+
+# For Connection info:
+# apt-get install -y tcpdump
+# tcpdump -i <interface> -A -s 0 'tcp port 80'
