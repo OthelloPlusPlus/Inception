@@ -19,6 +19,8 @@ COPY	tools/wordpress_setup.sh	/usr/local/bin/wordpress_setup.sh
 COPY	/tools/health_daemon.sh	/usr/local/bin/health_daemon.sh
 RUN		chmod +x	/usr/local/bin/wordpress_setup.sh \
 					/usr/local/bin/health_daemon.sh
+COPY	tools/add_post.sql	/usr/local/bin/add_post.sql
+RUN		chmod +r	/usr/local/bin/add_post.sql
 
 # Configuration
 WORKDIR /var/www/html

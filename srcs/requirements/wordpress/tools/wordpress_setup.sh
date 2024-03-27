@@ -1,5 +1,6 @@
 #! /bin/bash
 
+set -e
 # CONFIG_FILE="/var/www/html/wp-config.php"
 WWWCONF='/etc/php/7.4/fpm/pool.d/www.conf';
 
@@ -116,9 +117,13 @@ else
 						"$WP_USER" \
 						"$WP_USER_MAIL" \
 						--user_pass=$PASSWORD_LOW \
-						--role="contributor" \
+						--role="editor" \
 						--porcelain
 fi
+
+# Adding post to wordpress
+msg	"Adding post to wordpress at ID 23"
+envsubst < /usr/local/bin/add_post.sql | mariadb -h$DB_HOST -u$DB_USER -p$DB_PASSWORD
 
 # wp-cli user list
 msg	"Displaying users:"
