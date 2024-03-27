@@ -27,7 +27,7 @@ run: down build updetach
 re: down buildclean updetach
 
 rmi:
-	docker rmi $(shell docker images -aq) | true
+	docker rmi $(shell docker images -aq) -f | true
 
 clean:
 	$(DOCK_COMPOSE_CMD) -f $(DOCK_COMPOSE_FILE) down --rmi local --remove-orphans

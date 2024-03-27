@@ -14,6 +14,7 @@ services:
     image: nginx:inception
     depends_on:
       - inception_base
+      - wordpress
     build:
       context: ./requirements/nginx
       dockerfile: Dockerfile
