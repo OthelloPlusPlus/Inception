@@ -14,8 +14,8 @@ TLS is a cryptographic protocol used to secure communication over a computer net
 It is the successor to SSL (Security Sockers Layer) and often still referred to as such.
 TLS ensures that data transmitted between the server and the client is encrypted and remains confidential, protecting it from eavesdropping and tampering by malicious actors.
 
-Using the command-line tool [openssl req](nginx/Dockerfile#L27) a [self-signed](nginx/Dockerfile#L27) certificated is generated.
-It generates a [private key](nginx/Dockerfile#L31) which is used for to encrypt and sign data, and a [certificate](nginx/Dockerfile#L28), which contains [server information](nginx/Dockerfile#L33) and a public key.
+Using the command-line tool [openssl req](Dockerfile#L25) a [self-signed](Dockerfile#L25) certificated is generated.
+It generates a [private key](Dockerfile#L29) which is used for to encrypt and sign data, and a [certificate](Dockerfile#L30), which contains [server information](Dockerfile#L31) and a public key.
 
 # NGINX Configuration
 Each website available through NGINX has its configuration stored in /etc/nginx/sites-available.
