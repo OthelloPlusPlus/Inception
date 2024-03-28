@@ -160,9 +160,9 @@ It updates whenever there is a [docker event](dockerMonitor.sh#L89) or every 10 
 - [mariadb](srcs/requirements/mariadb/)
 
 # Evaluation
-**Score:** %
-> ""
-> 		- []()
+**Score:** 100%
+> "Looks good. Evaluatee is enthousiastic in his explanations. Was able to explain everything into great detail and everything works as it should. The monitoring script is handy and works well. Good luck with your next evaluation :)"
+> 		- Ferry Ras
 
 **Score:** %
 > ""
