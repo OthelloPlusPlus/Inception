@@ -8,6 +8,7 @@ The Inception project requires you to setup a functional WordPress website. For 
     - [Docker Volume](#docker-volume)
     - [Docker Network](#docker-network)
     - [Dockerfile](#dockerfile)
+- [dockerMonitor.sh](#dockermonitorsh)
 - [Sub-README files](#sub-readme-files)
 - [Evaluation](#evaluation)
 - [Creator](#creator)
@@ -147,6 +148,10 @@ HEALTHCHECK --interval=30s --timeout=3s \  # Defines a health check command
 ENTRYPOINT ["node", "app.js"]              # Configures the container to run as an executable
 CMD ["--config", "config.json"]            # Specifies the default command to run when the container starts
 ```
+
+# dockerMonitor.sh
+A simple shell script that in real time keeps track of the docker images, containers, volumes and networks.
+It updates whenever there is a [docker event](dockerMonitor.sh#L89) or every 10 seconds.
 
 # Sub-README Files
 - [docker-compose](srcs/)
