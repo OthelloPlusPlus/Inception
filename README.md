@@ -164,7 +164,7 @@ It updates whenever there is a [docker event](dockerMonitor.sh#L89) or every 10 
 > "Looks good. Evaluatee is enthousiastic in his explanations. Was able to explain everything into great detail and everything works as it should. The monitoring script is handy and works well. Good luck with your next evaluation :)"
 > 		- Ferry Ras
 
-**Score:** %
+**Score:** 100%
 > "Really nice explanations of the code. The bonus you did yourself were amazing to be able to test this project and understand it. I really gotalot from this eval and I'm pretty sure you will past your last eval. Good luck for Transcendance"
 > 		- [Maximilien Bernede](https://github.com/MaxBernede)
 
