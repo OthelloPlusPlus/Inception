@@ -19,7 +19,7 @@ Final configuration is done by adjusting the [www.conf](conf/www.conf) file.
 WP-CLI (WordPress Command Line Interface) is a command-line tool for managing WordPress installations.
 It provides a [set of commands](https://developer.wordpress.org/cli/commands/) for performing common tasks such as installing WordPress, managing plugins and themes, importing/exporting content, and performing database operations.
 
-During the [entrypoint script](tools/wordpress_setup.sh) wp-cli is used to [download WordPress](tools/wordpress_setup.sh#L67), [create the wp-config.php](tools/wordpress_setup.sh#L76), [adjusting the MariaDB to the more secure environment](tools/wordpress_setup.sh#L89), [install WordPress](tools/wordpress_setup.sh#L96) and [create a new user](tools/wordpress_setup.sh#L110)
+During the [entrypoint script](tools/wordpress_setup.sh) wp-cli is used to [download WordPress](tools/wordpress_setup.sh#L68), [create the wp-config.php](tools/wordpress_setup.sh#L77), [adjusting the MariaDB to the more secure environment](tools/wordpress_setup.sh#L90), [install WordPress](tools/wordpress_setup.sh#L97), [create a new user](tools/wordpress_setup.sh#L111) and [send an sql script to MariaDB to create a new post](tools/wordpress_setup.sh#L124).
 
 ## Configuration File
 <table>
