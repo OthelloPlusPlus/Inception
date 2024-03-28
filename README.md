@@ -165,8 +165,8 @@ It updates whenever there is a [docker event](dockerMonitor.sh#L89) or every 10 
 > 		- Ferry Ras
 
 **Score:** %
-> ""
-> 		- []()
+> "Really nice explanations of the code. The bonus you did yourself were amazing to be able to test this project and understand it. I really gotalot from this eval and I'm pretty sure you will past your last eval. Good luck for Transcendance"
+> 		- [Maximilien Bernede](https://github.com/MaxBernede)
 
 **Score:** %
 > ""
